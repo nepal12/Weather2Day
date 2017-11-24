@@ -38,7 +38,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.nepal12.weather2day.MainActivity" />
         </activity>
-        
+
+        <provider
+            android:authorities="net.nepal12.weather2day"
+            android:name=".data.WeatherProvider" />
 
     </application>
 
