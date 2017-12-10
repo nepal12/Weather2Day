@@ -29,6 +29,7 @@ tools:context="net.nepal12.weather2day.MainActivity">
         android:layout_height="match_parent"
         tools:context="net.nepal12.weather2day.ForecastFragment"
         tools:layout="@android:layout/list_content"
+        android:background="@android:color/transparent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 

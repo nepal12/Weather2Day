@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import net.nepal12.weather2day.sync.W2dSyncAdapter;
+
 public class MainActivity extends AppCompatActivity implements ForecastFragment.Callback {
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
                 .findFragmentById(R.id.fragment_forecast));
         forecastFragment.setUseTodayLayout(!mTwoPane);
 
+        // initialize sync adapter
+        W2dSyncAdapter.initializeSyncAdapter(this);
     }
 
 
@@ -70,36 +74,9 @@ public class MainActivity extends AppCompatActivity implements ForecastFragment.
             return true;
         }
 
-        //Menu item Map
-        if(id == R.id.action_map){
-            openPreferredLocationInMap();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
-    // open Preferred map Location
-    private void openPreferredLocationInMap() {
-
-        String location = Utility.getPreferredLocation(this);
-
-        // Using the URI scheme for showing a location found on a map.  This super-handy
-        // intent can is detailed in the "Common Intents" page of Android's developer site:
-        // http://developer.android.com/guide/components/intents-common.html#Maps
-        Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
-                .appendQueryParameter("q", location)
-                .build();
-
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(geoLocation);
-
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        } else {
-            Log.d(LOG_TAG, "Couldn't call " + location + ", no receiving apps installed!");
-        }
-    }
     @Override
     protected void onResume() {
         super.onResume();

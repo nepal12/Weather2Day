@@ -20,6 +20,7 @@
     <style name="ActionBar.Solid.w2d.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="displayOptions">useLogo|showHome</item>
         <item name="logo">@drawable/ic_logo</item>
+
     </style>
 
     <!-- Style for forecast listview -->
